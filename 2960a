@@ -1,0 +1,159 @@
+
+Switch#show run
+Building configuration...
+
+Current configuration : 3692 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname Switch
+!
+boot-start-marker
+boot-end-marker
+!
+enable password 7 0250204E0D3E2B2544
+!
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ftp username kstm
+ip ftp password 7 132E4E3E3B1D142419
+!
+!
+interface FastEthernet0/1
+ ip access-group 101 in
+!
+interface FastEthernet0/2
+ ip access-group 102 in
+!
+interface FastEthernet0/3
+ ip access-group 103 in
+!
+interface FastEthernet0/4
+ ip access-group 104 in
+!
+interface FastEthernet0/5
+ ip access-group 105 in
+!
+interface FastEthernet0/6
+ ip access-group 106 in
+!
+interface FastEthernet0/7
+ ip access-group 107 in
+!
+interface FastEthernet0/8
+ ip access-group 108 in
+!
+interface FastEthernet0/9
+ ip access-group 109 in
+!
+interface FastEthernet0/10
+ ip access-group 110 in
+!
+interface FastEthernet0/11
+ ip access-group 111 in
+!
+interface FastEthernet0/12
+ ip access-group 112 in
+!
+interface FastEthernet0/13
+ ip access-group 113 in
+!
+interface FastEthernet0/14
+ ip access-group 114 in
+!
+interface FastEthernet0/15
+ ip access-group 115 in
+!
+interface FastEthernet0/16
+ ip access-group 116 in
+!
+interface FastEthernet0/17
+ ip access-group 117 in
+!
+interface FastEthernet0/18
+ ip access-group 118 in
+!
+interface FastEthernet0/19
+ ip access-group 119 in
+!
+interface FastEthernet0/20
+ ip access-group 120 in
+!
+interface FastEthernet0/21
+ ip access-group 121 in
+!
+interface FastEthernet0/22
+ ip access-group 122 in
+!
+interface FastEthernet0/23
+ ip access-group 123 in
+!
+interface FastEthernet0/24
+ ip access-group 124 in
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+!
+ip http server
+ip http secure-server
+access-list 101 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1101
+access-list 102 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1102
+access-list 103 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1103
+access-list 104 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1104
+access-list 105 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1105
+access-list 106 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1106
+access-list 107 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1107
+access-list 108 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1108
+access-list 109 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1109
+access-list 110 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1110
+access-list 111 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1111
+access-list 112 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1112
+access-list 113 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1113
+access-list 114 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1114
+access-list 115 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1115
+access-list 116 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1116
+access-list 117 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1117
+access-list 118 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1118
+access-list 119 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1119
+access-list 120 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1120
+access-list 121 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1121
+access-list 122 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1122
+access-list 123 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1123
+access-list 124 permit tcp 192.168.0.0 0.0.0.255 host 10.1.1.1 eq 1124
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
