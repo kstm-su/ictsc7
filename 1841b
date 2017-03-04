@@ -1,4 +1,5 @@
 !
+! Last configuration change at 01:35:08 UTC Sat Mar 4 2017
 version 15.1
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -97,6 +98,8 @@ no ip http secure-server
 !
 !
 ipv6 access-list T8
+ sequence 90 permit icmp any any router-advertisement
+ sequence 95 permit icmp any any router-solicitation
  sequence 100 deny icmp any any
  sequence 150 permit ipv6 any any
 !
