@@ -1,0 +1,114 @@
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RouterB
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+dot11 syslog
+ip source-route
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+!
+!
+license udi pid CISCO1841 sn FHK1430F0N8
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address autoconfig
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address autoconfig default
+ ipv6 traffic-filter T8 in
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+ no fair-queue
+ clock rate 125000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 125000
+!
+router bgp 64708
+ bgp router-id 2.2.2.2
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 2403:BD80:C000:982::1 remote-as 64608
+ neighbor 2403:BD80:C000:983::1 remote-as 65100
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+  network 2403:BD80:C000:982::/64
+  network 2403:BD80:C000:983::/64
+  neighbor 2403:BD80:C000:982::1 activate
+  neighbor 2403:BD80:C000:983::1 activate
+ exit-address-family
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ipv6 access-list T8
+ sequence 100 deny icmp any any
+ sequence 150 permit ipv6 any any
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
