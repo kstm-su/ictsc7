@@ -1,0 +1,110 @@
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname 1841a
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 4 gFCy118vr/n3rDLaWQc30UKich1SOysq.e2ar1ryu4o
+!
+no aaa new-model
+!
+memory-size iomem 25
+dot11 syslog
+ip source-route
+!
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+!
+!
+license udi pid CISCO1841 sn FHK1430F0N7
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address 2403:BD80:C000:981::2/64
+ ipv6 nd ra suppress
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address 2403:BD80:C000:982::1/64
+ ipv6 nd prefix 2403:BD80:C000:982::/64 120 120
+ ipv6 nd ra suppress
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+ no fair-queue
+ clock rate 125000
+!
+interface Serial0/0/1
+ no ip address
+ shutdown
+ clock rate 125000
+!
+router bgp 64608
+ bgp router-id 1.1.1.1
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 2403:BD80:C000:981::1 remote-as 65100
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+  network 2403:BD80:C000:981::/64
+  network 2403:BD80:C000:982::/64
+  neighbor 2403:BD80:C000:981::1 activate
+ exit-address-family
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
