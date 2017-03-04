@@ -1,4 +1,5 @@
 !
+! Last configuration change at 05:30:43 UTC Sat Mar 4 2017
 version 15.1
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -58,7 +59,6 @@ interface FastEthernet0/1
  speed auto
  ipv6 address 2403:BD80:C000:982::1/64
  ipv6 nd prefix 2403:BD80:C000:982::/64 120 120
- ipv6 nd ra suppress
 !
 interface Serial0/0/0
  no ip address
