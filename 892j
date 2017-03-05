@@ -1,0 +1,173 @@
+!
+! No configuration change since last restart
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+crypto pki token default removal timeout 0
+!
+!
+ip source-route
+!
+!
+!
+ip vrf A
+!
+ip vrf B
+!
+!
+ip dhcp pool hogehoge
+ vrf A
+ network 172.16.1.0 255.255.255.0
+ default-router 172.16.1.1
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+license udi pid CISCO892-K9 sn FGL1638250Q
+!
+!
+vtp mode transparent
+!
+!
+!
+!
+vlan 2-3,7
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip vrf forwarding B
+ ip address 172.16.2.1 255.255.255.0
+!
+interface BRI0
+ no ip address
+ encapsulation hdlc
+ shutdown
+ isdn termination multidrop
+!
+interface FastEthernet0
+ no ip address
+!
+interface FastEthernet1
+ no ip address
+!
+interface FastEthernet2
+ switchport access vlan 2
+ no ip address
+!
+interface FastEthernet3
+ switchport access vlan 3
+ no ip address
+!
+interface FastEthernet4
+ no ip address
+!
+interface FastEthernet5
+ no ip address
+!
+interface FastEthernet6
+ no ip address
+!
+interface FastEthernet7
+ switchport access vlan 7
+ no ip address
+!
+interface FastEthernet8
+ ip address 20.0.0.1 255.0.0.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0
+ ip address 10.0.0.1 255.0.0.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan2
+ ip vrf forwarding A
+ ip address 172.16.1.1 255.255.255.0
+!
+interface Vlan3
+ ip vrf forwarding A
+ ip address 10.0.0.2 255.0.0.0
+!
+interface Vlan7
+ ip vrf forwarding B
+ ip address 20.0.0.2 255.0.0.0
+!
+router rip
+ network 10.0.0.0
+ network 20.0.0.0
+ !
+ address-family ipv4 vrf B
+  network 20.0.0.0
+  network 172.16.0.0
+  no auto-summary
+ exit-address-family
+ !
+ address-family ipv4 vrf A
+  network 10.0.0.0
+  network 172.16.0.0
+  no auto-summary
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+mgcp profile default
+!
+!
+!
+!
+!
+line con 0
+ password y7DXCQBR
+ login
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
