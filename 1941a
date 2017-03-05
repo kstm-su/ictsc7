@@ -1,9 +1,10 @@
+
 1941a#show run
 Building configuration...
 
-Current configuration : 1821 bytes
+Current configuration : 1783 bytes
 !
-! No configuration change since last restart
+! Last configuration change at 04:28:39 UTC Sun Mar 5 2017
 version 15.1
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -93,11 +94,10 @@ no ip http server
 no ip http secure-server
 !
 ip nat pool nat 192.168.9.2 192.168.9.2 prefix-length 24
-ip nat inside source list 101 pool nat
+ip nat inside source list 10 pool nat overload
 ip route 0.0.0.0 0.0.0.0 192.168.9.1
 !
-access-list 101 permit ip 192.168.9.0 0.0.0.255 any
-access-list 101 permit ip 192.168.6.0 0.0.0.127 any
+access-list 10 permit 192.168.6.0 0.0.0.127
 !
 !
 !
