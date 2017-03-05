@@ -4,7 +4,7 @@ Building configuration...
 
 Current configuration : 1783 bytes
 !
-! Last configuration change at 04:28:39 UTC Sun Mar 5 2017
+! Last configuration change at 04:53:42 UTC Sun Mar 5 2017
 version 15.1
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -97,7 +97,7 @@ ip nat pool nat 192.168.9.2 192.168.9.2 prefix-length 24
 ip nat inside source list 10 pool nat overload
 ip route 0.0.0.0 0.0.0.0 192.168.9.1
 !
-access-list 10 permit 192.168.6.0 0.0.0.127
+access-list 10 permit 192.168.6.0 0.0.0.255
 !
 !
 !
